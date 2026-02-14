@@ -1,0 +1,199 @@
+Product Requirements Document (PRD)
+2026 Zhejiang University Alumni Association, Greater Washington DC Chapter
+2026 Chinese New Year Festival Website + Fundraising Display
+1) Overview
+
+Build a simple event website for:
+
+2026 Zhejiang University Alumni Association, Greater Washington DC Chapter
+2026 Chinese New Year Festival
+
+The website will:
+
+Use the Agenda page as the landing page (/).
+
+Include a visible and prominent link to the Fundraising Page.
+
+Provide a separate Fundraising Display page showing:
+
+Total amount raised
+
+Rotating donor ticker
+
+Provide a simple Admin Portal page to manually add donations.
+
+No authentication required.
+
+2) Goals
+
+• Present a clean and professional event landing page.
+• Clearly display the full event agenda.
+• Make fundraising visible and transparent.
+• Make it easy for staff to add donations quickly.
+• Keep the system minimal, reliable, and easy to deploy.
+• Support fundraising specifically for:
+
+2026 Zhejiang University Alumni Association, Greater Washington DC Chapter – 2026 Chinese New Year Festival
+
+3) Non-Goals
+
+• No login/authentication/roles
+• No payment processing (donations come from external systems)
+• No refunds, chargebacks, donor messaging, or email receipts
+• No complex reporting or export tools
+• No CMS required
+
+4) Users
+Public Viewer
+
+• Views agenda
+• Views fundraising progress
+• Sees donors
+
+Staff / Admin (Informal)
+
+• Adds donations via portal
+• Views recent donations
+
+5) Key Pages & User Stories
+A) Landing Page – Event Agenda (/)
+Purpose
+
+Primary public page showing the festival program and link to fundraising.
+
+Page Header
+
+Title:
+
+2026 Zhejiang University Alumni Association
+Greater Washington DC Chapter
+Chinese New Year Festival
+
+Optional subtitle:
+
+“Celebrating Culture, Community, and the Year of the Horse”
+
+Prominent Button:
+
+👉 Support the Festival – Donate Now
+(Link to: /fundraising)
+
+Agenda Section
+Opening Program
+
+• 《鼓动天地》 — 大华府腰鼓队
+• 开门红抽奖
+
+• 男声独唱《我爱你中国》 — 余炫强
+• 民族舞《子君书》 — Jennifer Zhang
+• 器乐演唱《浮光》《如愿》 — Be Our Own Light (BOOL) 乐队
+• 舞蹈《醉清波》 — Olivia Wu
+• 女声独唱《世界属于我的》 — 徐张弛
+
+• 游戏抽奖
+
+• 维吾尔族舞《一杯美酒》 — 亿舞社
+• 男声独唱《但愿人长久》 — 吴梓廷
+• 双人舞《芒种》 — 梁帆、乔桥
+
+• 乐队演唱《曾经的你》《像风一样自由》
+— Sounds of the Seasons (SOS) 乐队
+
+• 抽奖
+
+• 合唱《平凡之路》
+— 大华府浙江大学校友会合唱团
+
+UI Requirements
+
+• Clean, festive Chinese New Year visual style
+• Red + gold theme preferred
+• Clear section headers
+• Good mobile responsiveness
+• Fundraising link clearly visible at:
+
+Top of page
+
+Possibly mid-page
+
+Footer
+
+B) Fundraising Display Page (/fundraising)
+Purpose
+
+Public display of fundraising progress.
+
+User Stories
+
+• As a viewer, I can see the total amount raised prominently.
+• As a viewer, I can see a rotating list of donors.
+• As a viewer, I see updates without refreshing (optional but preferred).
+
+UI Requirements
+Header
+
+“Support the 2026 ZJU DC Chinese New Year Festival”
+
+Back link:
+← Return to Event Agenda
+
+Total Raised Section
+
+Large, prominent display:
+
+Total Raised: $X,XXX
+
+Centered and visually emphasized.
+
+Donor Ticker Area
+
+• Shows 5 donors at a time
+• Rotates every 3 seconds
+• Moves:
+
+1 donor in
+
+1 donor out
+• Infinite loop
+
+Example display:
+
+“Thank you, [Donor Name], for your generous support — $XXX”
+
+If no donors yet:
+
+“Be the first to support the 2026 Festival!”
+
+Behavior
+
+• Auto-refresh or polling every 10–30 seconds (optional enhancement)
+• Total updates dynamically
+• Smooth animation transitions
+
+C) Admin Portal Page (/portal)
+Purpose
+
+Simple manual data entry page.
+
+No authentication required (intentionally minimal system).
+
+User Stories
+
+• As staff, I can add a donor name and amount.
+• As staff, I can see recently added donations (optional).
+• As staff, I get validation errors for invalid input.
+
+UI Requirements
+Form Fields
+
+• Donor Name (text input)
+• Anonymous checkbox (optional)
+• Amount (number, currency)
+• Submit Button: “Add Donation”
+
+Validation Rules
+
+• Amount required
+• Amount must be > 0
+• Name required unless Anonymous is selected
+• Currency format validation
