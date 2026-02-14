@@ -3,39 +3,41 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-interface Donor {
-  id: string;
-  donorName: string;
-  amount: number;
-  timestamp: number;
+interface DonateItem {
+  name: string;
+  amout: number;
+}
+
+interface DonateData {
+  amout: number;
+  donateList: DonateItem[];
 }
 
 export default function FundraisingPage() {
   const [total, setTotal] = useState(0);
-  const [donors, setDonors] = useState<Donor[]>([]);
-  const [visibleDonors, setVisibleDonors] = useState<Donor[]>([]);
+  const [donors, setDonors] = useState<DonateItem[]>([]);
+  const [visibleDonors, setVisibleDonors] = useState<DonateItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Fetch data
+  // Fetch data from GitHub
   const fetchData = async () => {
     try {
-      const [totalRes, donorsRes] = await Promise.all([
-        fetch("/api/total"),
-        fetch("/api/donors"),
-      ]);
-      const totalData = await totalRes.json();
-      const donorsData = await donorsRes.json();
+      const timestamp = new Date().getTime();
+      const response = await fetch(
+        `https://raw.githubusercontent.com/jonkiky/2026-zj-show/refs/heads/main/data/donate.json?t=${timestamp}`
+      );
+      const data: DonateData = await response.json();
 
-      setTotal(totalData.total);
-      setDonors(donorsData.donors);
+      setTotal(data.amout);
+      setDonors(data.donateList.filter(donor => donor.amout > 0));
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching donation data:", error);
     }
   };
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 15000); // Refresh every 15 seconds
+    const interval = setInterval(fetchData, 30000); // Refresh every 30 seconds
     return () => clearInterval(interval);
   }, []);
 
@@ -119,7 +121,7 @@ export default function FundraisingPage() {
             <div className="space-y-4 min-h-[300px]">
               {visibleDonors.map((donor, index) => (
                 <div
-                  key={`${donor.id}-${index}`}
+                  key={`${donor.name}-${index}`}
                   className="bg-gradient-to-r from-red-50 to-amber-50 p-6 rounded-lg border-l-4 border-cny-gold transition-all duration-500 ease-in-out transform hover:scale-105"
                   style={{
                     animation: "fadeIn 0.5s ease-in",
@@ -128,11 +130,11 @@ export default function FundraisingPage() {
                   <p className="text-lg text-gray-800">
                     Thank you,{" "}
                     <span className="font-bold text-cny-red">
-                      {donor.donorName}
+                      {donor.name}
                     </span>
                     , for your generous support —{" "}
                     <span className="font-bold text-cny-gold">
-                      ${donor.amount.toLocaleString("en-US")}
+                      ${donor.amout.toLocaleString("en-US")}
                     </span>
                   </p>
                 </div>
