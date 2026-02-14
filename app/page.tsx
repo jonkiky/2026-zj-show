@@ -1,6 +1,53 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
+interface ProgramItem {
+  performance: string;
+  performer: string;
+}
+
+interface ProgramSection {
+  id: string;
+  title: string;
+  items: ProgramItem[];
+}
+
+interface EventData {
+  eventTitle: string;
+  sections: ProgramSection[];
+}
+
 export default function Home() {
+  const [eventData, setEventData] = useState<EventData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEventData = () => {
+      const timestamp = new Date().getTime();
+      fetch(`https://raw.githubusercontent.com/jonkiky/2026-zj-show/refs/heads/main/data/event.json?t=${timestamp}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setEventData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error loading event data:", error);
+          setLoading(false);
+        });
+    };
+
+    // Fetch immediately on mount
+    fetchEventData();
+
+    // Set up interval to fetch every 30 seconds
+    const interval = setInterval(fetchEventData, 30000);
+
+    // Cleanup interval on unmount
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -49,113 +96,43 @@ export default function Home() {
             Festival Program
           </h2>
 
-          <div className="space-y-6">
-            {/* Opening Program */}
-            <div className="border-l-4 border-cny-gold pl-6">
-              <h3 className="text-xl font-semibold text-cny-dark-red mb-3">
-                Opening Program
-              </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>《鼓动天地》 — 大华府腰鼓队</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>开门红抽奖</span>
-                </li>
-              </ul>
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">Loading program...</p>
             </div>
-
-            {/* Performance Block 1 */}
-            <div className="border-l-4 border-cny-red pl-6">
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>男声独唱《我爱你中国》 — 余炫强</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>民族舞《子君书》 — Jennifer Zhang</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>器乐演唱《浮光》《如愿》 — Be Our Own Light (BOOL) 乐队</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>舞蹈《醉清波》 — Olivia Wu</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>女声独唱《世界属于我的》 — 徐张弛</span>
-                </li>
-              </ul>
+          ) : eventData ? (
+            <div className="space-y-6">
+              {eventData.sections.map((section, index) => {
+                const isSpecialSection = section.id === "game1" || section.id === "raffle";
+                const borderColor = index % 2 === 0 ? "border-cny-gold" : "border-cny-red";
+                
+                return (
+                  <div key={section.id} className={`border-l-4 ${borderColor} pl-6`}>
+                    {(section.id === "opening" || section.id === "closing") && (
+                      <h3 className="text-xl font-semibold text-cny-dark-red mb-3">
+                        {section.title}
+                      </h3>
+                    )}
+                    <ul className="space-y-2 text-gray-700">
+                      {section.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start">
+                          <span className="text-cny-gold mr-2">•</span>
+                          <span className={isSpecialSection ? "font-semibold text-cny-red" : ""}>
+                            {item.performance}
+                            {item.performer && ` — ${item.performer}`}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
-
-            {/* Game */}
-            <div className="border-l-4 border-cny-gold pl-6">
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span className="font-semibold text-cny-red">游戏抽奖</span>
-                </li>
-              </ul>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-red-600">Failed to load program data.</p>
             </div>
-
-            {/* Performance Block 2 */}
-            <div className="border-l-4 border-cny-red pl-6">
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>维吾尔族舞《一杯美酒》 — 亿舞社</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>男声独唱《但愿人长久》 — 吴梓廷</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>双人舞《芒种》 — 梁帆、乔桥</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Performance Block 3 */}
-            <div className="border-l-4 border-cny-gold pl-6">
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>
-                    乐队演唱《曾经的你》《像风一样自由》 — Sounds of the Seasons (SOS) 乐队
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Final Draw */}
-            <div className="border-l-4 border-cny-red pl-6">
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span className="font-semibold text-cny-red">抽奖</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Closing */}
-            <div className="border-l-4 border-cny-gold pl-6">
-              <h3 className="text-xl font-semibold text-cny-dark-red mb-3">
-                Closing Performance
-              </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-cny-gold mr-2">•</span>
-                  <span>合唱《平凡之路》 — 大华府浙江大学校友会合唱团</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          )}
         </section>
 
         {/* Mid-page Fundraising CTA */}
