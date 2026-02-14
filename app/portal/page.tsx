@@ -50,12 +50,15 @@ export default function PortalPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 to-amber-50">
       {/* Header */}
-      <header className="bg-gradient-to-r from-cny-red to-cny-dark-red text-white py-8 px-4 text-center shadow-lg">
+      <header className="bg-gradient-to-r from-cny-red to-cny-dark-red text-white py-8 px-4 text-center shadow-lg border-b-4 border-cny-gold">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="inline-block bg-cny-gold text-cny-dark-red px-8 py-3 rounded font-bold text-lg mb-4 border-2 border-white">
+            马年大吉 · Year of the Horse 2026
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">
             Admin Portal
           </h1>
-          <p className="text-lg text-amber-200">Add donations manually</p>
+          <p className="text-lg text-amber-200">2026 Chinese New Year Festival</p>
         </div>
       </header>
 
@@ -71,7 +74,7 @@ export default function PortalPage() {
             </Link>
           </div>
 
-          <h2 className="text-2xl font-bold text-cny-red mb-6 border-b-4 border-cny-gold pb-2">
+          <h2 className="text-2xl font-bold text-cny-red mb-6 border-b-4 border-cny-gold pb-2 text-center">
             Add New Donation
           </h2>
 

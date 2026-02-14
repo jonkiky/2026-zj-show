@@ -59,14 +59,20 @@ export default function FundraisingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 to-amber-50">
       {/* Header */}
-      <header className="bg-gradient-to-r from-cny-red to-cny-dark-red text-white py-8 px-4 text-center shadow-lg">
+      <header className="bg-gradient-to-r from-cny-red to-cny-dark-red text-white py-8 px-4 text-center shadow-lg border-b-4 border-cny-gold">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Support the 2026 ZJU DC Chinese New Year Festival
+          <div className="inline-block bg-cny-gold text-cny-dark-red px-8 py-3 rounded font-bold text-lg mb-4 border-2 border-white">
+            马年大吉 · Year of the Horse 2026
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">
+            Support the 2026 Chinese New Year Festival
           </h1>
+          <p className="text-lg text-amber-200 mb-4">
+            ZJU Alumni Association, Greater Washington DC Chapter
+          </p>
           <Link
             href="/"
-            className="inline-block text-amber-200 hover:text-white transition-colors"
+            className="inline-block text-amber-200 hover:text-white transition-colors text-lg"
           >
             ← Return to Event Agenda
           </Link>
@@ -76,26 +82,35 @@ export default function FundraisingPage() {
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-12">
         {/* Total Raised Section */}
-        <section className="bg-white rounded-lg shadow-2xl p-12 mb-12 text-center">
+        <section className="bg-white rounded-lg shadow-2xl p-12 mb-12 text-center border-t-4 border-cny-gold">
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Total Raised
           </h2>
           <div className="text-6xl md:text-7xl font-bold text-cny-red mb-2">
             ${total.toLocaleString("en-US", { minimumFractionDigits: 0 })}
           </div>
-          <p className="text-gray-600 mt-4">
+          <div className="text-2xl font-bold text-cny-gold mt-4 tracking-wider">
+            马到成功
+          </div>
+          <p className="text-gray-600 mt-2">
             Thank you for supporting our community!
           </p>
         </section>
 
         {/* Donor Ticker Section */}
-        <section className="bg-white rounded-lg shadow-lg p-8">
+        <section className="bg-white rounded-lg shadow-lg p-8 border-t-4 border-cny-gold">
+          <div className="text-center mb-6">
+            <div className="inline-block bg-gradient-to-r from-cny-red to-cny-gold text-white px-8 py-3 rounded font-bold text-lg mb-2 border-2 border-cny-dark-red">
+              龙马精神
+            </div>
+          </div>
           <h2 className="text-2xl font-bold text-cny-red mb-6 text-center border-b-4 border-cny-gold pb-2">
             Our Generous Supporters
           </h2>
 
           {donors.length === 0 ? (
             <div className="text-center py-12">
+              <div className="text-2xl text-cny-gold font-bold mb-4 tracking-wider">一马当先</div>
               <p className="text-xl text-gray-600 italic">
                 Be the first to support the 2026 Festival!
               </p>

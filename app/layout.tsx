@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "2026 ZJU DC Chinese New Year Festival",
-  description: "Celebrating Culture, Community, and the Year of the Horse",
+  title: "2026 Chinese New Year Festival - ZJU DC",
+  description: "Celebrating Culture, Community, and Prosperity - Year of the Horse 2026",
 };
 
 export default function RootLayout({
