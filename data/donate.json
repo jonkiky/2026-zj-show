@@ -2,7 +2,7 @@
     "amout": 10,
     "donateList": [
         {
-            "name": "支付宝",
-            "amout": 0
+            "name": "abc",
+            "amout": 1
         }]
 }
