@@ -1,0 +1,103 @@
+{
+  "eventTitle": "2026 Chinese New Year Festival Program",
+  "sections": [
+    {
+      "id": "opening",
+      "title": "Opening Program",
+      "items": [
+        {
+          "performance": "《鼓动天地》",
+          "performer": "大华府腰鼓队"
+        },
+        {
+          "performance": "开门红抽奖",
+          "performer": ""
+        }
+      ]
+    },
+    {
+      "id": "block1",
+      "title": "Performance Block 1",
+      "items": [
+        {
+          "performance": "男声独唱《我爱你中国》",
+          "performer": "余炫强"
+        },
+        {
+          "performance": "民族舞《子君书》",
+          "performer": "Jennifer Zhang"
+        },
+        {
+          "performance": "器乐演唱《浮光》《如愿》",
+          "performer": "Be Our Own Light (BOOL) 乐队"
+        },
+        {
+          "performance": "舞蹈《醉清波》",
+          "performer": "Olivia Wu"
+        },
+        {
+          "performance": "女声独唱《世界属于我的》",
+          "performer": "徐张弛"
+        }
+      ]
+    },
+    {
+      "id": "game1",
+      "title": "Game & Raffle",
+      "items": [
+        {
+          "performance": "游戏抽奖",
+          "performer": ""
+        }
+      ]
+    },
+    {
+      "id": "block2",
+      "title": "Performance Block 2",
+      "items": [
+        {
+          "performance": "维吾尔族舞《一杯美酒》",
+          "performer": "亿舞社"
+        },
+        {
+          "performance": "男声独唱《但愿人长久》",
+          "performer": "吴梓廷"
+        },
+        {
+          "performance": "双人舞《芒种》",
+          "performer": "梁帆、乔桥"
+        }
+      ]
+    },
+    {
+      "id": "block3",
+      "title": "Performance Block 3",
+      "items": [
+        {
+          "performance": "乐队演唱《曾经的你》《像风一样自由》",
+          "performer": "Sounds of the Seasons (SOS) 乐队"
+        }
+      ]
+    },
+    {
+      "id": "raffle",
+      "title": "Raffle",
+      "items": [
+        {
+          "performance": "抽奖",
+          "performer": ""
+        }
+      ]
+    },
+    {
+      "id": "closing",
+      "title": "Closing Performance",
+      "items": [
+        {
+          "performance": "合唱《平凡之路》",
+          "performer": "大华府浙江大学校友会合唱团"
+        }
+      ]
+    }
+  ]
+}
