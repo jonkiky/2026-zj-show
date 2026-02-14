@@ -1,12 +1,12 @@
 {
-    "amout": 10,
+    "amout": 20,
     "donateList": [
         {
             "name": "abc",
             "amout": 1
         }, 
           {
-            "name": "abc",
-            "amout": 2
+            "name": "abcddd",
+            "amout": 5
         }]
 }
